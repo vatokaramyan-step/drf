@@ -1,3 +1,13 @@
-from django.shortcuts import render
+# snippets/view.py      
 
-# Create your views here.
+from rest_framework import generics
+from .models import Snippet
+from .serializers import SnippetSerializer
+
+class SnippetList(generics.ListCreateAPIView):
+    queryset = Snippet.objects.all()
+    serializer_class = SnippetSerializer()
+
+class SnippetDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Snippet.objects.all()
+    serializer_class = SnippetSerializer
